@@ -1,0 +1,6 @@
+//Given var=192.168.0.123, write a script that uses parameter expansion to extract the second number, 168
+
+	#!/bin/bash
+	
+	var="192.168.0.123"
+	echo "${var:4:3}"
