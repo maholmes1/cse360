@@ -1,0 +1,26 @@
+pr1() #@ Print arguments one to a line
+{
+ case $1 in
+ -w) pr_w= ## width specification modifier
+ shift
+ ;;
+ -W) pr_w=${2}
+ shift 2
+ ;;
+ -W*) pr_w=${1#??}
+ shift
+ ;;
+ *) pr_w=-.${COLUMNS:-80} ## default to number of columns in window
+ ;;
+ esac
+ printf "%${pr_w}s\n" "$@"
+ }
+
+pr4()
+{
+ ## calculate column width
+ local width=$(( (${COLUMNS:-80} - 2) / 4 ))
+ ## Note that braces are necessary on the second $width to separate it from 's'
+ local s=%-$width.${width}s
+ printf "$s $s $s $s\n" "$@"
+}
