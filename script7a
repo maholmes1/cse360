@@ -1,0 +1,17 @@
+is_palindrome () { 
+    local string=$1
+    local len=$((${#string} - 1))
+    local i
+    for ((i=0; i <= (len/2); i++)); do
+        [[ ${string:i:1} == ${string:len-i:1} ]] || return 1
+    done
+    return 0
+}
+
+for string in function; do
+    if is_palindrome $string; then
+        echo $string is a palindrome
+    else
+        echo $string is not a palindrome
+    fi
+done
